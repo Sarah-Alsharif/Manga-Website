@@ -1,0 +1,137 @@
+<head>
+  <title>Requests</title>
+</head>
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+  
+        <div class="col-md-2 first-col py-5 text-center">
+  
+          <h4><i class="fas fa-cog"></i> Dashboard</h4>
+  
+          <div class="btn-container mt-3">
+            <a href="/">
+              <button class="my-3 w-75 mx-auto admin-btn">Home</button>
+            </a>
+
+            <a href="/admin">
+              <button class="my-3 w-75 mx-auto admin-btn">Users</button>
+            </a>
+  
+            <a href="/admin/requests">
+              <button class="my-3 w-75 mx-auto admin-btn">Users requsets</button>
+            </a>
+
+            <a href="/manga/add">
+              <button class="my-3 w-75 mx-auto admin-btn">Add Manga</button>
+            </a>
+
+            <a href="/logout"> <button class="my-3 w-75 mx-auto admin-btn">Logout <i class="fas fa-sign-out-alt"></i></button></a>
+
+          </div>
+      </div> <!--end first col-->
+
+      <div class="col-md-10 secound-col py-5">
+        <h2 class="table-title ">Users request</h2>
+        <h4 class="tableReq-title">Open request</h4>
+    
+<table  class="table text-center mx-auto mt-4 w-75">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Description</th>
+        <th scope="col">response</th>
+        <th scope="col">Status</th>
+        <th scope="col">Submit</th>
+      </tr>
+
+    </thead>
+    <tbody>
+
+    <% requset.forEach(function(requset){ %>
+        <%if(requset.isClosed == false){%>
+    <tr>
+        <form method="POST" action="/admin/requests/?request_id=<%=requset._id %>">
+            <td>
+                <input type="text"  disabled class="form-control text-center"  name="username" value="<%=requset.user_id.username%>">
+                <input type="text"  hidden class="form-control"  name="user_id" value="<%=requset.user_id._id%>">
+            </td>
+
+            <td>
+                <input type="text"disabled class="form-control text-center"  name="description" value="<%=requset.description%>">
+            </td>
+
+            <td>
+                <input type="text" required class="form-control text-center "  name="response" value="<%=requset.response%>">
+            </td>
+
+            <td>
+                <select required class="form-control" name="status">
+                  <option selected="selected" value="select">Select</option>
+                  <option value="true">Accept</option>
+                  <option value="false">Deny</option>
+                </select>
+            </td>
+
+            <td>
+                <a href="#"><button class=" btn btn-submit mx-auto">sumbit</button></a>
+            </td>
+
+        </form>
+    </tr>
+    <%}%>
+    <%})%>
+   
+    </tbody>
+  </table>
+
+  <!----------------------------------------------------------------->
+  <h4 class="tableReq-title mt-4">Close request</h4>
+  <table border="2" class="table text-center mx-auto mt-4 w-75">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">Description</th>
+        <th scope="col">response</th>
+        <th scope="col">Status</th>
+  
+      </tr>
+    </thead>
+
+    <tbody>
+
+        <% requset.forEach(function(requset){ %>
+            <%if(requset.isClosed == true){%>
+        <tr>
+            <form>
+                <td>
+                    <input type="text" class="text-center" disabled  class="form-control"  name="username" value="<%=requset.user_id.username%>">
+                </td>
+    
+                <td>
+                    <input type="text" class="text-center" disabled  class="form-control"  name="username" value="<%=requset.description%>">
+                </td>
+
+                <td>
+                    <input type="text" class="text-center" disabled  class="form-control"  name="response" value="<%=requset.response%>">
+                </td>
+    
+                <td>
+                    <input type="text" class="text-center" disabled  class="form-control"  name="status" value="<%=requset.status%>">
+                </td>
+
+    
+            </form>
+        </tr>
+        <%}%>
+        <%})%>
+
+
+    </tbody>
+    </table>
+
+</div><!--end second col-->
+</div><!--end first row-->
+
+</div>
+</section>

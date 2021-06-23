@@ -1,0 +1,97 @@
+<head>
+  <title>Users</title>
+</head>
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-2 first-col py-5 text-center">
+
+        <h4><i class="fas fa-cog"></i> Dashboard</h4>
+
+        <div class="btn-container mt-3">
+          <a href="/">
+            <button class="my-3 w-75 mx-auto admin-btn">Home</button>
+          </a>
+          
+          <a href="/admin">
+            <button class="my-3 w-75 mx-auto admin-btn">Users</button>
+          </a>
+
+          <a href="/admin/requests">
+            <button class="my-3 w-75 mx-auto admin-btn">Users requsets</button>
+          </a>
+
+          <a href="/manga/add">
+            <button class="my-3 w-75 mx-auto admin-btn">Add Manga</button>
+          </a>
+          
+          <a href="/logout"> <button class="my-3 w-75 mx-auto admin-btn">Logout <i class="fas fa-sign-out-alt"></i></button></a>
+        </div>
+    </div> <!--end first col-->
+
+    <div class="col-md-10 secound-col py-5">
+      <h2 class="table-title ">Users</h2>
+
+      <table border="2" class="table mx-auto text-center mt-4 w-75">
+        <thead>
+          <tr>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Type</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+      
+        <% user.forEach(function(user){ %>
+        <tr>
+          <form method="POST">
+      
+            <td>
+                <input type="text" class="form-control text-center"  name="username" value="<%=user.username%>">
+            </td>
+      
+            <td>
+              <input type="emil" class="form-control text-center"  name="email" value="<%=user.email%>">
+            </td>
+      
+            <td>
+              <select id="disabledSelect" name="type" class="form-select">
+                <option value="1">user</option>
+                <option value="2">admin</option>
+                <option value="3">translator</option>
+              </select>
+            </td>
+      
+            <td>
+              <button type="submit" formaction="/admin/userss?id=<%=user._id %>" class="btn btn-update">Update</button>
+            </td>
+      
+            <td> 
+              <button type="submit" formaction="/admin/userDelete?id=<%=user._id %>"  class="btn btn-delete">Delete</button>
+            </td>
+      
+          </form>
+        </tr>
+      
+        <%})%>
+      
+        </tbody>
+      </table>
+      
+
+    </div><!--end second col-->
+    </div><!--end first row-->
+
+  </div>
+</section>
+
+
+
+
+
+
+
+

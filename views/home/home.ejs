@@ -1,0 +1,183 @@
+<head>
+  <title>Home</title>
+</head>
+  <!--panner-->
+    <section class="panner">
+        <div class="container">
+          <div class="row">
+            <div class="col-10 mx-auto height d-flex justify-content-center align-items-center">
+               <div class="panner-content text-center">
+                  <h4 class="welcome">Welcom to our</h4>
+                  <h1 class="manga-panner">MANGA ASH</h1>
+               </div>
+            </div>
+          </div>
+         </div>  
+      </section>
+  
+    <!---------------------------------------------------------------->
+
+    <!--new manga-->
+    <section class="new-manga py-4">
+        <div class="container">
+            <!--title-->
+            <div class="row">
+                <div class="col-10 mx-auto text-center">
+                    <h1 class="title">New Manga</h1>
+                    <hr>
+                </div>
+            </div>
+            <!--end first row-->
+
+            <div class="row py-5 text-center">
+              <% main_manga.forEach((m)=>{ %>
+                <div class="col-10 mx-auto col-sm-6 col-xl-3 mt-3 text-center ">
+                  <!--start card-->
+                  <div class="card mx-auto text-center card-shadow">
+                      <img src="<%= m.poster %>" class="card-img-top pt-3" alt="<%= m.title %> poster">
+                      <div class="card-body">
+                        <a id="linkk" href="/manga/show/<%= m._id %>"><h5 class="card-title"><%= m.title %></h5></a>
+                      </div>
+                  </div>
+                    <!--end card-->
+                </div><!--end-col-->
+
+              <% }) %>
+                
+            </div><!--end row-->
+            
+        </div><!--end continer-->
+    </section>
+
+
+  <!---------------------------------------------------------------->
+
+  <section id="bkg" style="background-color: #8ab6d6
+  ;">
+    
+    <div class="container">
+      <!--title-->
+      <div class="row">
+          <div class="col-10 mx-auto text-center">
+              <h1 class="title">New Chapters</h1>
+              <hr>
+          </div>
+        
+      </div><!--end row-->
+      <% let t= 1;%>
+      <% newChapters.forEach((ch)=>{ %>
+        <% if(t == 1){ %>
+          
+          <div class="row my-5 text-center">
+            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
+              <div class="flip-card mx-auto">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="<%= ch.manga_poster %>" alt="Avatar" style="width:210px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h3 class="mt-3"><%= ch.manga_title %> </h3>
+                      <% ch.chapters_number.forEach((number,i)=>{ %>
+                        <% if(i < 3){ %>
+                          <p><a href="/chapter/show/<%= ch.chapters_id[i] %>">#ch.<%= number %></a></p>
+                      <% }}) %>
+                      
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <!--end col-->
+            
+          <% t++; %>
+          <% console.log(t+" || 1") %>
+        <% }else if( t == 4){ %>
+          
+            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
+              <div class="flip-card mx-auto">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="<%= ch.manga_poster %>" alt="Avatar" style="width:210px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h3 class="mt-3"><%= ch.manga_title %> </h3>
+                      <% ch.chapters_number.forEach((number,i)=>{ %>
+                        <% if(i < 3){ %>
+                          <p><a href="/chapter/show/<%= ch.chapters_id[i] %>">#ch.<%= number %></a></p>
+                      <% }}) %>
+                      
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <!--end col-->
+
+
+          </div><!--end row-->
+          <% t=1; %>
+          <% console.log(t+" || 4") %>
+        <% }else{ %>
+          
+            <div class=" col-12 col-md-4 col-xl-3 mt-4 mx-auto text-center">
+              <div class="flip-card mx-auto">
+                  <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                      <img src="<%= ch.manga_poster %>" alt="Avatar" style="width:210px;height:250px;">
+                    </div>
+                    <div class="flip-card-back">
+                      <h3 class="mt-3"><%= ch.manga_title %> </h3>
+                      <% ch.chapters_number.forEach((number,i)=>{ %>
+                        <% if(i < 3){ %>
+                          <p><a href="/chapter/show/<%= ch.chapters_id[i] %>">#ch.<%= number %></a></p>
+                      <% }}) %>
+                      
+                    </div>
+                  </div>
+                </div>
+          </div>
+          <!--end col-->
+          
+        <% t++; %>
+        <% console.log(t) %>
+        <% } %>
+      <% }) %>
+      
+    </div><!--end container-->
+
+  </section>
+
+
+  <!---------------------------------------------------------------->
+
+<!--------------------------------------------------------------------->
+
+<section>
+    <div class="container">
+
+               <!--title-->
+               <div class="row py-3">
+                <div class="col-10 mx-auto col-sm-6 text-center mt-3 first-col">
+                    <h1 class="title">About Us</h1>
+                    <span><i class="white-Background fas fa-book about-icon"></i></span>
+                    <div class="title-underLine aboutLine"></div>
+                    <p class="pt-4">
+                        One of the most popular online manga sites.
+                         You can read the latest manga on the same day when they are released in Japan.
+
+                    </p>
+                </div>
+
+                <div class="col-10 mx-auto col-sm-6 text-center  mt-4 secound-col">
+
+                    <div class="about-img mx-auto py-4">
+                        <div class="outline-dev"></div>
+                   </div>
+
+            
+                </div>
+            </div>
+            <!--end first row-->
+
+
+    </div><!--end container-->
+</section>
+

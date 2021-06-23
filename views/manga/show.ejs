@@ -1,0 +1,129 @@
+<head>
+    <link rel="stylesheet" href="/css/manga.css">
+    <title>Show Manga</title>
+</head>
+
+<br>
+<div class="container">
+    <div class="card mb-3" style="max-width: 100%;">
+        <div class="row center">
+            <div class="col-md-4">
+                <img src="<%=m.poster %>" draggable="false"
+                    class="card-img" alt="solo leveling poster">
+            </div>
+            
+            <div class="col-md-8">
+                <div class="card-body">
+                    <% if(currentUser) { %>
+                        <% if(currentUser.type == "2") { %>
+                                <h3 class="card-title"><%=m.title%> 
+                                   
+                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: #ffc115;" class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: #ffc115;" class="far fa-plus-square"></i></a></span>
+                                    <span><a href="/manga/delete/<%=m._id%>"><i style="color: #ffc115;" class="far fa-trash-alt"></i></a></span>  
+                                </h3>
+                            <%}else if(currentUser.type == "3"){%>
+                                <h3 class="card-title"><%=m.title%> 
+                                    <span><a href="/manga/edit/<%=m._id%>"><i style="color: #ffc115;" class="far fa-edit"></i></a></span>
+                                    <span><a href="/chapter/add/<%=m._id%>"><i style="color: #ffc115;" class="far fa-plus-square"></i></a></span>
+                                </h3>
+                            <%}%>
+                    <%}else{%>
+                        <h3 class="card-title"><%=m.title%> </h3>
+                    <%}%>
+
+                   
+                    <hr class="my-4">
+                    <!-- <b>Rate: -/10 <br> -->
+                    <p class="card-text">
+                            <b>Genres:</b> <%=m.genres.join() %><br>
+                            <b>Other names:</b> <%=m.other_names.join() %><br>
+                            <b>Author:</b> <%=m.author %><br>
+                            <b>Painter:</b> <%=m.artists %><br>
+                            <b>Origin:</b> <%=m.origin %><br>
+                            <b>Reading direction:</b> <%=m.reading_direction %><br>
+                    </p>
+                    <p class="card-text"><b>Story: </b> <%=m.description %>
+                    </p>
+                    <% if(chapters[0]!= null && chapters[0]!= undefined ) { %>
+                    
+                    <p class="card-text">
+                        <small class="text-muted">Chapter Updated <%= moment(chapters[0].createdAt).fromNow() %></small>
+                    </p>
+                    <%}else{%> 
+                        <p class="card-text">
+                            <small class="text-muted">Manga Created <%= moment(m.createdAt).fromNow() %></small>
+                        </p>
+                    <%}%>
+                </div>
+            </div>
+        </div>
+        <div id="zero-top" class="row">
+            <div id="zero-top" class="col-xs-12">
+                <div id="zero-top" class="card-body">
+
+                        <hr id="zero-top" class="my-4">
+                        <div class="row center">
+                            <% chapters.forEach(ch=>{ %>
+                                <% if(currentUser) { %>
+                                    <% if(currentUser.type == "2") { %>
+
+                                        <div class="col-xs-3 mt-2 col-md-4 offset3 ">
+                                          <div class="content text-center">
+                                              <a class="ch-number w-75" href="/chapter/show/<%=ch._id%>">
+                                                <div>#<%= ch.number %></div>
+                                              </a>
+
+                                              <div class="ch-icon">
+                                              <a class="ch-edit" href="/chapter/edit/<%=ch._id%>">
+                                                <div><i class="fas fa-edit"></i></div>
+                                              </a>
+
+                                              <a class="ch-delete" href="/chapter/delete/<%=ch._id%>">
+                                                <div><i class="far fa-trash-alt"></i></div>
+                                              </a>
+                                            </div>
+
+                                          </div>
+                                        </div>
+
+                                    <%}else if(currentUser.type == "3"){%>
+
+                                        <div class="col-xs-3 mt-2 col-md-3 offset3 ">
+                                            <div class="content text-center">
+                                                <a class="ch-number w-100" href="/chapter/show/<%=ch._id%>">
+                                                  <div>#<%= ch.number %></div>
+                                                </a>
+  
+                                                <a class="ch-edit" href="/chapter/edit/<%=ch._id%>">
+                                                  <div><i class="fas fa-edit"></i></div>
+                                                </a>
+
+                                            </div>
+                                          </div>
+                                    <%} else{%>
+                                        <div class="col-xs-3 col-md-2 offset3 ">
+                                            <form method="get" action="/chapter/show/<%=ch._id%>">
+                                                <button type="submit" class="btn btn-dark">#<%= ch.number %></button>
+                                            </form>
+                                        </div>
+                                        <%}}else{%>
+                                            <div class="col-xs-3 col-md-2 offset3 ">
+                                                <form method="get" action="/chapter/show/<%=ch._id%>">
+                                                    <button type="submit" class="btn btn-dark">#<%= ch.number %></button>
+                                                </form>
+                                            </div>
+                            <%}})%>
+                           
+                        </div><!-- end row -->
+
+                    </div><!-- end card-body -->
+                </div><!-- end col-med 8 -->
+
+
+
+
+        </div><!-- end row -->
+    </div><!-- end card -->
+
+</div><!-- end of container -->

@@ -1,0 +1,42 @@
+<head>
+  <link rel="stylesheet" href="/css/forms.css">
+  <title>Add Chapter</title>
+</head>
+
+<div class="container">
+  <form method="POST" action="/chapter/add">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="title">Chapter Title</label>
+          <input type="text" required class="form-control" name="title" placeholder="Chapter Title">
+        </div>
+        <div class="col-md-6">
+          <label for="number">Chapter Number</label>
+          <input type="number"  class="form-control" required name="number" min="0" value="0" step=".1" placeholder="Chapter Number">
+        </div>
+      </div>
+      
+      <div class="row">
+          
+          <div class="form-group">
+              <label for="links">Links</label>
+              <textarea required class="form-control" name="pages" rows="10"></textarea>
+          </div>
+          
+
+          <div class="col-md-6">
+              <!-- this will be equal to user id -->
+              <input type="text" hidden class="form-control" value="<%=user_id%>" name="created_by">
+              <!-- this will be equal to manga id -->
+              <!--<label for="manga-id">Manga ID</label>-->
+              <input type="text" hidden class="form-control" value="<%=manga_id%>" name="manga_id">
+          </div>
+      </div>
+       
+      <div class="button-center">
+          <button type="submit" class="btn btn-primary submit">Submit</button>
+      </div>
+      
+    </form>
+
+</div>

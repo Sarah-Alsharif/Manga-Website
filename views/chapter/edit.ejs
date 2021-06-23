@@ -1,0 +1,41 @@
+<head>
+  <link rel="stylesheet" href="/css/forms.css">
+  <title>Edit Chapter</title>
+</head>
+
+<div class="container">
+  <form method="POST" action="/chapter/edit/?id=<%=chapter._id %>">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="title">Chapter Title</label>
+          <input type="text" required class="form-control" name="title" placeholder="Chapter Title" value="<%=chapter.title%>">
+        </div>
+        <div class="col-md-6">
+          <label for="number">Chapter Number</label>
+          <input type="number" class="form-control" required name="number" min="0" value="<%=chapter.number%>"
+           step=".1" placeholder="Chapter Number">
+        </div>
+      </div>
+      
+      <div class="row">
+          
+          <div class="form-group">
+              <label for="links">Links</label>
+              <textarea class="form-control" required name="pages" rows="10"><%=chapter.pages.join('\n')%>
+              </textarea>
+          </div>
+    
+          <div class="col-md-6">
+            <input type="text" hidden class="form-control" value="<%=id%>" name="created_by">
+            <input type="text" hidden class="form-control" value="<%=chapter._id%>" name="id">
+            <input type="text" hidden class="form-control" value="<%=chapter.manga_id%>" name="manga_id">
+          </div>
+      </div>
+       
+      <div class="button-center">
+          <button type="submit" class="btn btn-primary submit">Submit</button>
+      </div>
+      
+    </form>
+
+</div>
