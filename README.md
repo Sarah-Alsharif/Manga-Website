@@ -1,5 +1,5 @@
 # Manga Website
-##### Link to the website [Live Link](https://manga-sei-15.herokuapp.com/)
+
 # Introduction
 ##### Our website provides a place for manga readers to read from and for translators to add their translated works.
 
